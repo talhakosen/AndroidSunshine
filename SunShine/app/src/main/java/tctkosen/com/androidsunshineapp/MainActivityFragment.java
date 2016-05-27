@@ -268,13 +268,25 @@ public class MainActivityFragment extends Fragment {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
-            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-            String location = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
 
-            FetchWeatherTask weatherTask = new FetchWeatherTask();
-            weatherTask.execute(location);
+            updateWeather();
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+    private void updateWeather() {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String location = prefs.getString(getString(R.string.pref_location_key), getString(R.string.pref_location_default));
+        FetchWeatherTask weatherTask = new FetchWeatherTask();
+        weatherTask.execute(location);
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        updateWeather();
+    }
+
 }
