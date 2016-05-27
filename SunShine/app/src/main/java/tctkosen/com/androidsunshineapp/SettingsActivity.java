@@ -2,7 +2,6 @@ package tctkosen.com.androidsunshineapp;
 
 
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.ListPreference;
@@ -90,16 +89,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_location_key)));
             bindPreferenceSummaryToValue(findPreference(getString(R.string.pref_units_key)));
-        }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            int id = item.getItemId();
-            if (id == android.R.id.home) {
-                startActivity(new Intent(getActivity(), SettingsActivity.class));
-                return true;
-            }
-            return super.onOptionsItemSelected(item);
         }
     }
 }
