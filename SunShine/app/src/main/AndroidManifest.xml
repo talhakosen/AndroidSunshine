@@ -14,13 +14,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".DetailActivity"
             android:label="@string/title_activity_detail"
@@ -29,6 +23,21 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="tctkosen.com.androidsunshineapp.MainActivity" />
+        </activity>
+        <activity android:name=".intent_lab.ActivityLoaderActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".intent_lab.ExplicitlyLoadedActivity" />
+        <activity android:name=".intent_lab.MyBrowserActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="http" />
+            </intent-filter>
         </activity>
     </application>
 
