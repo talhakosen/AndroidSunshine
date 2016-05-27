@@ -106,6 +106,7 @@ public class MainActivityFragment extends Fragment {
                 }
 
                 forecastJsonStr = buffer.toString();
+                Log.v(LOG_TAG, "Weather JSON  : " + forecastJsonStr);
             } catch (IOException e) {
                 Log.e(LOG_TAG, "Error ", e);
                 return null;
