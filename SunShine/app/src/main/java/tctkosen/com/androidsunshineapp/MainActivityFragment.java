@@ -1,5 +1,6 @@
 package tctkosen.com.androidsunshineapp;
 
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -70,17 +71,31 @@ public class MainActivityFragment extends Fragment {
         return rootView;
     }
 
-    public class FetchWeatherTask extends AsyncTask<Void,Void,Void>{
+
+    String format = "json";
+    String units = "metric";
+    int numDays = 7;
+    public class FetchWeatherTask extends AsyncTask<String,Void,Void>{
         private final String LOG_TAG = FetchWeatherTask.class.getSimpleName();
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Void doInBackground(String... params) {
             HttpURLConnection urlConnection = null;
             BufferedReader reader = null;
 
             String forecastJsonStr = null;
             try {
-                URL url = new URL(Config.baseUrl);
+                Uri builtUri = Uri.parse(Config.FORECAST_BASE_URL).buildUpon()
+                        .appendQueryParameter(Config.QUERY_PARAM, params[0])
+                        .appendQueryParameter(Config.FORMAT_PARAM, format)
+                        .appendQueryParameter(Config.UNITS_PARAM, units)
+                        .appendQueryParameter(Config.DAYS_PARAM, Integer.toString(numDays))
+                        .appendQueryParameter(Config.APPID_PARAM, Config.APPID)
+                        .build();
+
+                URL url = new URL(builtUri.toString());
+
+                Log.v(LOG_TAG, "Built URI " + builtUri.toString());
 
                 // Create the request to OpenWeatherMap, and open the connection
                 urlConnection = (HttpURLConnection) url.openConnection();
@@ -137,7 +152,7 @@ public class MainActivityFragment extends Fragment {
         int id = item.getItemId();
         if (id == R.id.action_refresh) {
             FetchWeatherTask weatherTask = new FetchWeatherTask();
-            weatherTask.execute();
+            weatherTask.execute("34330");
             return true;
         }
         return super.onOptionsItemSelected(item);
