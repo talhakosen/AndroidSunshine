@@ -40,6 +40,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ForecastActivity" />
         </activity>
+        <provider
+            android:authorities="tctkosen.com.androidsunshineapp"
+            android:name=".data.WeatherProvider" />
     </application>
 
 </manifest>
