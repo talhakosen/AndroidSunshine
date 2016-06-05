@@ -29,8 +29,8 @@ public class DetailFragment extends Fragment {
 
         Intent intent = getActivity().getIntent();
 
-        if (intent != null && intent.hasExtra(Intent.EXTRA_TEXT)) {
-            mForecastStr = intent.getStringExtra(Intent.EXTRA_TEXT);
+        if (intent != null) {
+            mForecastStr = intent.getDataString();
         }
 
         if (null != mForecastStr) {
