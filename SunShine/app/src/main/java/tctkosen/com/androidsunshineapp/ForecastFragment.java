@@ -38,10 +38,10 @@ import java.util.List;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class MainActivityFragment extends Fragment {
+public class ForecastFragment extends Fragment {
     ArrayAdapter<String> mForecastAdapter;
 
-    public MainActivityFragment() {
+    public ForecastFragment() {
     }
 
     @Override
@@ -72,7 +72,7 @@ public class MainActivityFragment extends Fragment {
                 R.id.list_item_forecast_textview, // The ID of the textview to populate.
                 weekForecast);
 
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_forecast, container, false);
 
         // Get a reference to the ListView, and attach this adapter to it.
         ListView listView = (ListView) rootView.findViewById(R.id.listview_forecast);
@@ -271,7 +271,7 @@ public class MainActivityFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.forecastfragment, menu);
+        inflater.inflate(R.menu.menu_forecast_fragment, menu);
     }
 
     @Override
